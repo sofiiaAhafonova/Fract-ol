@@ -25,5 +25,12 @@ t_env	*init(char *fractol)
 		return (0);
 	if (!(env->image = mlx_new_image(env->mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT)))
 		return (0);
+	if (!(env->julia  = (t_julia*)malloc(sizeof(t_julia))))
+		return (0);
+	env->julia->c.x =-0.7;
+	env->julia->c.y = 0.27015;
+	env->julia->radius = 2;
+	env->julia->n = 150;
+	env->julia->zoom = 1;
 	return (env);
 }

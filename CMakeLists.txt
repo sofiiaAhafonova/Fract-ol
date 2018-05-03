@@ -28,9 +28,9 @@ else()
     link_directories(minilibx_macos)
     include_directories(minilibx_macos)
     set ( PROJECT_LINK_LIBS libmlx.a )
-    set (LINKED_LIBS  -lmlx)
+    set (LINKED_LIBS  -lmlx -lm)
     # stuff that should happen not on Linux
 endif()
 
-add_executable(Fract_ol src/main.c include/fractol.h src/init_env.c src/remove_env.c src/key_hooks.c)
+add_executable(Fract_ol src/main.c include/fractol.h src/init_env.c src/remove_env.c src/key_hooks.c src/julia.c src/complex.c)
 target_link_libraries(Fract_ol ${PROJECT_LINK_LIBS} -Werror -Wextra -Wall ${LINKED_LIBS} ${EXTRA_LIBS})

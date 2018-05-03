@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   complex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sahafono <sahafono@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/03 00:06:00 by sahafono          #+#    #+#             */
-/*   Updated: 2018/05/03 00:06:00 by sahafono         ###   ########.fr       */
+/*   Created: 2018/05/03 22:32:00 by sahafono          #+#    #+#             */
+/*   Updated: 2018/05/03 22:32:00 by sahafono         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
 
-
-int		main(int argc, char **argv)
+t_complex add(t_complex a, t_complex b)
 {
-	t_env *env;
 	t_complex c;
 
-	if (argc != 2 || !(env = init(argv[1])))
-		return (0);
-	mlx_hook(env->window, 17, 1L << 17, &close_window, env);
-	mlx_hook(env->window, 2, 5, on_key_press, env);
-	juliaSet(env);
-	mlx_loop(env->mlx_ptr);
-	return (0);
+	c.x = a.x + b.x;
+	c.y = a.y + b.y;
+	return (c);
+}
+
+t_complex sqr(t_complex a)
+{
+	t_complex c;
+
+	c.x = a.x * a.x - a.y * a.y;
+	c.y = 2 * a.x * a.y;
+	return (c);
+}
+
+double mod(t_complex a)
+{
+	return (sqrt(a.x*a.x + a.y*a.y));
 }
