@@ -1,42 +1,70 @@
+#******************************************************************************#
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sahafono <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/05/01 15:31:54 by sahafono          #+#    #+#              #
+#    Updated: 2018/05/01 15:33:05 by sahafono         ###   ########.fr        #
+#                                                                              #
+#******************************************************************************#
+
+# Project file
 NAME = fractol
 
-SRC_PATH = src
-SRC_NAME =  main.c init_env.c remove_env.c key_hooks.c
+# Project builds and dirs
+SRCDIR = ./src/
+SRCNAMES = $(shell ls $(SRCDIR) | grep -E ".+\.c")
+SRC = $(addprefix $(SRCDIR), $(SRCNAMES))
+INC = ./include/
+BUILDDIR = ./build/
+BUILDOBJS = $(addprefix $(BUILDDIR), $(SRCNAMES:.c=.o))
 
-OBJ_PATH = objs
-OBJ_NAME = $(SRC_NAME:.c=.o)
+# Libft builds and dirs
+LIBDIR = ./libft/
+LIBFT = ./libft/libft.a
+LIBINC = ./libft/
 
-CC = clang
-CFLAGS = -Wall -Werror -Wextra
+# Optimization and Compiler flags and commands
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror 
 
-CPPFLAGS = -Iinclude -Ilibmlx/
+# Debugging flags
+DEBUG = 
 
-LDFLAGS =
-LDLIBS =  -lXext -lX11 -lm
+# Main rule
+all: $(BUILDDIR) $(LIBFT) $(NAME)
 
+# Object dir rule
+$(BUILDDIR):
+	mkdir -p $(BUILDDIR)
 
-SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
-OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
+# Objects rule
+$(BUILDDIR)%.o:$(SRCDIR)%.c
+	$(CC) $(CFLAGS) -I$(LIBINC) -I$(INC) -o $@ -c $<
 
-all: $(NAME)
+# Project file rule
+$(NAME): $(BUILDOBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(BUILDOBJS) $(LIBFT) -lm -lmlx -framework OpenGL -framework AppKit 
 
-$(NAME): $(OBJ) libmlx/libmlx_Linux.a
-	@$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
-	@echo "Compilation of Fractol:	\033[1;32mOK\033[m"
+# Libft rule
+$(LIBFT):
+	make -C $(LIBDIR)
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
-
+# Cleaning up the build files
 clean:
-	@rm -f $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || true
-	@echo "Fractol: Removing Objs"
+	rm -rf $(BUILDDIR)
+	make -C $(LIBDIR) clean
 
+# Getting rid of the project file
 fclean: clean
-	@rm -f $(NAME)
-	@echo "Fractol : Removing Fractol"
+	rm -rf $(NAME)
+	make -C $(LIBDIR) fclean
 
+# Do both of the above
 re: fclean all
 
-.PHONY: all clean fclean re
+# Just in case those files exist in the root dir
+.PHONY: all fclean clean re
+.NOTPARALLEL:  all clean fclean re

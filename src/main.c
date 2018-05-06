@@ -12,17 +12,27 @@
 
 #include "../include/fractol.h"
 
+int 	print_error(char *str)
+{
+	ft_putstr(str);
+	return (0);
+}
 
 int		main(int argc, char **argv)
 {
 	t_env *env;
-	t_complex c;
 
-	if (argc != 2 || !(env = init(argv[1])))
-		return (0);
+    if (argc != 2)
+        return (print_error("usage: fractol [fractal name]\n"));
+	if(!(env = init(argv[1])))
+        return (print_error("Wrong fractal name\n"));
 	mlx_hook(env->window, 17, 1L << 17, &close_window, env);
 	mlx_hook(env->window, 2, 5, on_key_press, env);
-	juliaSet(env);
-	mlx_loop(env->mlx_ptr);
+    if (env->fractal->type == JULIA)
+	{
+		init_julia(env);
+		julia_set(env);
+	}
+    mlx_loop(env->mlx_ptr);
 	return (0);
 }

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.9)
 project(Fract_ol C)
 
 set(CMAKE_C_STANDARD 11)
@@ -25,9 +25,9 @@ else()
             GLUT_LIBRARY
             OpenGL_LIBRARY)
     SET(EXTRA_LIBS ${COCOA_LIBRARY} ${GLUT_LIBRARY} ${OpenGL_LIBRARY})
-    link_directories(minilibx_macos)
-    include_directories(minilibx_macos)
-    set ( PROJECT_LINK_LIBS libmlx.a )
+    link_directories(minilibx_macos libft)
+    include_directories(minilibx_macos libft)
+    set ( PROJECT_LINK_LIBS libmlx.a libft.a)
     set (LINKED_LIBS  -lmlx -lm)
     # stuff that should happen not on Linux
 endif()

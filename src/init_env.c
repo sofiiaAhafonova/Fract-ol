@@ -12,10 +12,24 @@
 
 #include "../include/fractol.h"
 
-t_env	*init(char *fractol)
-{
-	t_env *env;
 
+int		init_julia(t_env *env)
+{
+	env->fractal->c.x = -0.7;
+	env->fractal->c.y = 0.27015;
+	env->fractal->radius = 2;
+	env->fractal->n = 150;
+	env->fractal->zoom = 1;
+	return (0);
+}
+
+t_env   *init(char *fractol)
+{
+    t_env *env;
+
+	if ((ft_strcmp(fractol, "julia") &&
+            ft_strcmp(fractol, "mandelbrot")))
+		return (0);
 	if ((env = malloc(sizeof(t_env))) == 0)
 		return (0);
 	if (!(env->mlx_ptr = mlx_init()))
@@ -25,12 +39,12 @@ t_env	*init(char *fractol)
 		return (0);
 	if (!(env->image = mlx_new_image(env->mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT)))
 		return (0);
-	if (!(env->julia  = (t_julia*)malloc(sizeof(t_julia))))
+    env->img_addr = mlx_
+	if (!(env->fractal  = (t_fractal*)malloc(sizeof(t_fractal))))
 		return (0);
-	env->julia->c.x =-0.7;
-	env->julia->c.y = 0.27015;
-	env->julia->radius = 2;
-	env->julia->n = 150;
-	env->julia->zoom = 1;
+	if (!ft_strcmp(fractol, "julia"))
+		env->fractal->type = JULIA;
+	else
+		env->fractal->type = MANDELBROT;
 	return (env);
 }
