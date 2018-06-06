@@ -73,5 +73,10 @@ void			julia_set(t_env *env);
 void			mandelbrot_set(t_env *env);
 int 			print_error(char *str);
 int				calc_color_julia(int i);
+int				init_mandelbrot(t_env *env);
+void			each_pixel(t_env *env, int x, int y, t_complex z0);
+t_complex		map_point(double radius, unsigned int zoom, int x, int y);
+
+
 
 #endif

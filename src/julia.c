@@ -27,6 +27,7 @@ int		calc_color_julia(int i)
 {
 	return ((i << 21) + (i << 10) + i * 8);
 }
+
 void	each_pixel(t_env *env, int x, int y, t_complex z0)
 {
 	int			i;
@@ -38,14 +39,12 @@ void	each_pixel(t_env *env, int x, int y, t_complex z0)
 		z1 = add(sqr(z0),env->fractal.c);
 		if (mod(z1)>env->fractal.radius)
 		{
-//			mlx_pixel_put(env->mlx_ptr, env->window, x, y, env->fractal.color_func(i));
 			env->image.data[y * SCREEN_WIDTH + x] =  env->fractal.color_func(i);
 			break;
 		}
 		z0 = z1;
 	}
 	if (i > env->fractal.n)
-//		mlx_pixel_put(env->mlx_ptr, env->window, x, y, 0);
 		env->image.data[y * SCREEN_WIDTH + x] = 0;
 }
 
