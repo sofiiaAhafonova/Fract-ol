@@ -20,6 +20,7 @@ int		init_julia(t_env *env)
 	env->fractal->radius = 2;
 	env->fractal->n = 150;
 	env->fractal->zoom = 1;
+	env->fractal->color_func = calc_color_julia;
 	return (0);
 }
 

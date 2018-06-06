@@ -39,6 +39,7 @@ typedef struct	s_fractal
 	double			radius;
 	int				n;
 	unsigned int	zoom;
+	int				(*color_func)(int);
 
 }				t_fractal;
 
@@ -62,5 +63,6 @@ double			mod(t_complex a);
 void			julia_set(t_env *env);
 void			mandelbrot_set(t_env *env);
 int 			print_error(char *str);
+int				calc_color_julia(int i);
 
 #endif

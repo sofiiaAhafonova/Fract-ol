@@ -23,6 +23,10 @@ t_complex map_point(double radius, unsigned int zoom, int x, int y)
 	return (c);
 }
 
+int		calc_color_julia(int i)
+{
+	return ((i << 21) + (i << 10) + i * 8);
+}
 void	each_pixel(t_env *env, int x, int y, t_complex z0)
 {
 	int			i;
@@ -34,7 +38,7 @@ void	each_pixel(t_env *env, int x, int y, t_complex z0)
 		z1 = add(sqr(z0),env->fractal->c);
 		if (mod(z1)>env->fractal->radius)
 		{
-			mlx_pixel_put(env->mlx_ptr, env->window, x, y, (i << 21) + (i << 10) + i * 8);
+			mlx_pixel_put(env->mlx_ptr, env->window, x, y, env->fractal->color_func(i));
 			break;
 		}
 		z0 = z1;
