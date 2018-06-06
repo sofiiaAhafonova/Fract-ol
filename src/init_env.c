@@ -39,7 +39,6 @@ t_env   *init(char *fractol)
 		return (0);
 	if (!(env->image = mlx_new_image(env->mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT)))
 		return (0);
-    env->img_addr = mlx_
 	if (!(env->fractal  = (t_fractal*)malloc(sizeof(t_fractal))))
 		return (0);
 	if (!ft_strcmp(fractol, "julia"))

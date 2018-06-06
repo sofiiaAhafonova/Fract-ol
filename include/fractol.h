@@ -60,6 +60,7 @@ t_complex		add(t_complex a, t_complex b);
 t_complex		sqr(t_complex a);
 double			mod(t_complex a);
 void			julia_set(t_env *env);
+void			mandelbrot_set(t_env *env);
 int 			print_error(char *str);
 
 #endif

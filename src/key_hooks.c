@@ -15,20 +15,8 @@
 int		close_window(t_env *env)
 {
 	remove_env(env);
-	/*system("leaks fractol");*/
+//	system("leaks fractol");
 	exit(EXIT_SUCCESS);
-}
-
-
-int		select_fraactal(t_env *env)
-{
-	if (!env)
-		return (0);
-	if (env->fractal->type == JULIA)
-		julia_set(env);
-	else if (env->fractal->type == MANDELBROT)
-		mandelbrot_set(env);
-	return (0);
 }
 
 int		on_key_press(int key, t_env *env)
@@ -56,5 +44,6 @@ int		on_key_press(int key, t_env *env)
 	else
 		return (0);
 	mlx_clear_window(env->mlx_ptr, env->window);
-	return (select_fraactal(env));
+    julia_set(env);
+	return (0);
 }
