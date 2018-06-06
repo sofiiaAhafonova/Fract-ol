@@ -34,6 +34,7 @@ int		on_key_press(int key, t_env *env)
 		return (close_window(env));
 	else if (key == 49 || key == 50)
 		env->fractal->radius = key == 49 ? env->fractal->radius - 0.1 : env->fractal->radius + 0.1;
+		/*iteration number*/
 	else if (key == 18 && env->fractal->n > 1)
 		env->fractal->n--;
 	else if (key == 19)
@@ -42,6 +43,7 @@ int		on_key_press(int key, t_env *env)
 		env->fractal->radius++;
 	else if (key == 21)
 		env->fractal->radius--;
+		/*main parameter(complex number)*/
 	else if (key == 23)
 		env->fractal->c.x = env->fractal->c.x - 0.00001;
 	else if (key == 22)
