@@ -10,9 +10,9 @@ endif()
 # if(NOT LINUX) should work, too, if you need that
 if(LINUX)
     message(STATUS ">>> Linux")
-    link_directories(libmlx)
-    include_directories(libmlx)
-    set ( PROJECT_LINK_LIBS  libmlx_Linux.a )
+    link_directories(libmlx libft)
+    include_directories(libmlx libft)
+    set ( PROJECT_LINK_LIBS  libmlx_Linux.a libft.a)
     set (LINKED_LIBS  -lXext -lX11 -lm )
     # linux stuff here
 else()

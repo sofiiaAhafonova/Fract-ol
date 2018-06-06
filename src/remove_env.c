@@ -16,6 +16,6 @@ void	remove_env(t_env *env)
 {
 	if (!env)
 		return ;
-	mlx_destroy_image(env->mlx_ptr, env->image);
+	mlx_destroy_image(env->mlx_ptr, env->image.img_ptr);
 	mlx_destroy_window(env->mlx_ptr, env->window);
 }

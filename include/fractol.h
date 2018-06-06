@@ -43,12 +43,21 @@ typedef struct	s_fractal
 
 }				t_fractal;
 
+typedef struct	s_img
+{
+	void		*img_ptr;
+	int			*data;
+	int			size_l;
+	int			bpp;
+	int			endian;
+}				t_img;
+
 typedef struct	s_env
 {
 	void		*mlx_ptr;
 	void		*window;
-	void		*image;
-	t_fractal	*fractal;
+	t_img		image;
+	t_fractal	fractal;
 
 }				t_env;
 

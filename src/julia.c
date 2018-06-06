@@ -33,18 +33,20 @@ void	each_pixel(t_env *env, int x, int y, t_complex z0)
 	t_complex	z1;
 
 	i = 0;
-	while (++i <= env->fractal->n)
+	while (++i <= env->fractal.n)
 	{
-		z1 = add(sqr(z0),env->fractal->c);
-		if (mod(z1)>env->fractal->radius)
+		z1 = add(sqr(z0),env->fractal.c);
+		if (mod(z1)>env->fractal.radius)
 		{
-			mlx_pixel_put(env->mlx_ptr, env->window, x, y, env->fractal->color_func(i));
+//			mlx_pixel_put(env->mlx_ptr, env->window, x, y, env->fractal.color_func(i));
+			env->image.data[y * SCREEN_WIDTH + x] =  env->fractal.color_func(i);
 			break;
 		}
 		z0 = z1;
 	}
-	if (i > env->fractal->n)
-		mlx_pixel_put(env->mlx_ptr, env->window, x, y, 0);
+	if (i > env->fractal.n)
+//		mlx_pixel_put(env->mlx_ptr, env->window, x, y, 0);
+		env->image.data[y * SCREEN_WIDTH + x] = 0;
 }
 
 void	julia_set(t_env *env)
@@ -59,8 +61,9 @@ void	julia_set(t_env *env)
 		y = -1;
 		while (++y <= SCREEN_HEIGHT)
 		{
-			z0 = map_point(env->fractal->radius, env->fractal->zoom, x, y);
+			z0 = map_point(env->fractal.radius, env->fractal.zoom, x, y);
 			each_pixel(env, x, y, z0);
 		}
 	}
+	mlx_put_image_to_window(env->mlx_ptr, env->window, env->image.img_ptr, 0, 0);
 }

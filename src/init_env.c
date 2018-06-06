@@ -15,12 +15,12 @@
 
 int		init_julia(t_env *env)
 {
-	env->fractal->c.x = -0.7;
-	env->fractal->c.y = 0.27015;
-	env->fractal->radius = 2;
-	env->fractal->n = 150;
-	env->fractal->zoom = 1;
-	env->fractal->color_func = calc_color_julia;
+	env->fractal.c.x = -0.7;
+	env->fractal.c.y = 0.27015;
+	env->fractal.radius = 2;
+	env->fractal.n = 150;
+	env->fractal.zoom = 1;
+	env->fractal.color_func = calc_color_julia;
 	return (0);
 }
 
@@ -38,13 +38,13 @@ t_env   *init(char *fractol)
 	if (!(env->window = mlx_new_window(env->mlx_ptr, SCREEN_WIDTH,
 			SCREEN_HEIGHT, fractol)))
 		return (0);
-	if (!(env->image = mlx_new_image(env->mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT)))
+	if (!(env->image.img_ptr = mlx_new_image(env->mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT)))
 		return (0);
-	if (!(env->fractal  = (t_fractal*)malloc(sizeof(t_fractal))))
-		return (0);
+	env->image.data = (int *)mlx_get_data_addr(env->image.img_ptr, &env->image.bpp, &env->image.size_l,
+											&env->image.endian);
 	if (!ft_strcmp(fractol, "julia"))
-		env->fractal->type = JULIA;
+		env->fractal.type = JULIA;
 	else
-		env->fractal->type = MANDELBROT;
+		env->fractal.type = MANDELBROT;
 	return (env);
 }

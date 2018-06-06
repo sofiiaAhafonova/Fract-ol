@@ -21,9 +21,9 @@ int		close_window(t_env *env)
 
 int		choose_fractal(t_env *env)
 {
-	if (env->fractal->type == JULIA)
+	if (env->fractal.type == JULIA)
 		julia_set(env);
-	else if (env->fractal->type == MANDELBROT)
+	else if (env->fractal.type == MANDELBROT)
 		mandelbrot_set(env);
 	return (0);
 }
@@ -33,25 +33,25 @@ int		on_key_press(int key, t_env *env)
 	if (key == ESC)
 		return (close_window(env));
 	else if (key == 49 || key == 50)
-		env->fractal->radius = key == 49 ? env->fractal->radius - 0.1 : env->fractal->radius + 0.1;
+		env->fractal.radius = key == 49 ? env->fractal.radius - 0.1 : env->fractal.radius + 0.1;
 		/*iteration number*/
-	else if (key == 18 && env->fractal->n > 1)
-		env->fractal->n--;
+	else if (key == 18 && env->fractal.n > 1)
+		env->fractal.n--;
 	else if (key == 19)
-		env->fractal->n++;
+		env->fractal.n++;
 	else if (key == 20)
-		env->fractal->radius++;
+		env->fractal.radius++;
 	else if (key == 21)
-		env->fractal->radius--;
+		env->fractal.radius--;
 		/*main parameter(complex number)*/
 	else if (key == 23)
-		env->fractal->c.x = env->fractal->c.x - 0.00001;
+		env->fractal.c.x = env->fractal.c.x - 0.00001;
 	else if (key == 22)
-		env->fractal->c.x = env->fractal->c.x + 0.00001;
-	else if (key == 27 && env->fractal->zoom > 1)
-		env->fractal->zoom--;
+		env->fractal.c.x = env->fractal.c.x + 0.00001;
+	else if (key == 27 && env->fractal.zoom > 1)
+		env->fractal.zoom--;
 	else if (key == 24)
-		env->fractal->zoom++;
+		env->fractal.zoom++;
 	else
 		return (0);
 	mlx_clear_window(env->mlx_ptr, env->window);
