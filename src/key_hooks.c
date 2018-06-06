@@ -19,6 +19,15 @@ int		close_window(t_env *env)
 	exit(EXIT_SUCCESS);
 }
 
+int		choose_fractal(t_env *env)
+{
+	if (env->fractal->type == JULIA)
+		julia_set(env);
+	else if (env->fractal->type == MANDELBROT)
+		mandelbrot_set(env);
+	return (0);
+}
+
 int		on_key_press(int key, t_env *env)
 {
 	if (key == ESC)
@@ -44,6 +53,5 @@ int		on_key_press(int key, t_env *env)
 	else
 		return (0);
 	mlx_clear_window(env->mlx_ptr, env->window);
-    julia_set(env);
-	return (0);
+	return (choose_fractal(env));
 }
