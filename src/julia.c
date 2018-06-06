@@ -12,7 +12,7 @@
 
 #include "../include/fractol.h"
 
-t_complex mapPoint(double radius, unsigned  int zoom, int x, int y)
+t_complex map_point(double radius, unsigned int zoom, int x, int y)
 {
 	t_complex c;
 	int l;
@@ -25,21 +25,33 @@ t_complex mapPoint(double radius, unsigned  int zoom, int x, int y)
 
 void julia_set(t_env *env)
 {
-	int x,y, i;
-	t_complex z0,z1;
+	int x;
+	int y;
+	int i;
+	t_complex z0;
+	t_complex z1;
 
-	for(x=0;x<=SCREEN_WIDTH;x++)
-		for(y=0;y<=SCREEN_HEIGHT;y++){
-			z0 = mapPoint(env->fractal->radius, env->fractal->zoom, x, y);
-			for(i=1;i<=env->fractal->n;i++){
+	x = -1;
+	while (++x <= SCREEN_WIDTH)
+	{
+		y = -1;
+		while (++y <= SCREEN_HEIGHT)
+		{
+			z0 = map_point(env->fractal->radius, env->fractal->zoom, x, y);
+			i = 1;
+			while (i <= env->fractal->n)
+			{
 				z1 = add(sqr(z0),env->fractal->c);
-				if(mod(z1)>env->fractal->radius){
+				if (mod(z1)>env->fractal->radius)
+				{
 					mlx_pixel_put(env->mlx_ptr, env->window, x, y, (i << 21) + (i << 10) + i*8);
 					break;
 				}
 				z0 = z1;
 			}
-			if(i > env->fractal->n)
+			if (i > env->fractal->n)
 				mlx_pixel_put(env->mlx_ptr, env->window, x, y, 0);
 		}
+	}
+
 }
