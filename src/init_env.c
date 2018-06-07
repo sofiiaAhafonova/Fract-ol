@@ -24,12 +24,17 @@ int		init_julia(t_env *env)
 	return (0);
 }
 
+/*
+ * x0 = scaled x coordinate of pixel (scaled to lie in the Mandelbrot X scale (-2.5, 1))
+ * y0 = scaled y coordinate of pixel (scaled to lie in the Mandelbrot Y scale (-1, 1))
+ *
+ */
 int		init_mandelbrot(t_env *env)
 {
-	env->fractal.c.x =  1;
-	env->fractal.c.y = -1;
+	env->fractal.c.x =  -1;
+	env->fractal.c.y = -0.4;
 	env->fractal.radius = 2;
-	env->fractal.n = 150;
+	env->fractal.n = 1000;
 	env->fractal.zoom = 1;
 	env->fractal.color_func = calc_color_julia;
 	return (0);
