@@ -34,18 +34,17 @@ void	each_pixel(t_env *env, int x, int y, t_complex z0)
 	t_complex	z1;
 
 	i = 0;
-	while (++i <= env->fractal.n)
+	z1 = add(sqr(z0),env->fractal.c);
+	while (mod(z1)<env->fractal.radius && ++i <= env->fractal.n)
 	{
 		z1 = add(sqr(z0),env->fractal.c);
-		if (mod(z1)>env->fractal.radius)
-		{
-			env->image.data[y * SCREEN_WIDTH + x] =  env->fractal.color_func(i);
-			break;
-		}
 		z0 = z1;
 	}
+
 	if (i > env->fractal.n)
 		env->image.data[y * SCREEN_WIDTH + x] = 0;
+	else
+		env->image.data[y * SCREEN_WIDTH + x] =  env->fractal.color_func(i);
 }
 
 void	julia_set(t_env *env)
@@ -54,11 +53,11 @@ void	julia_set(t_env *env)
 	int 		y;
 	t_complex	z0;
 
-	x = -1;
-	while (++x <= SCREEN_WIDTH)
+	y = env->offset_y - 1;
+	while (++y <= SCREEN_HEIGHT + env->offset_y)
 	{
-		y = -1;
-		while (++y <= SCREEN_HEIGHT)
+		x = env->offset_x - 1;
+		while (++x <= SCREEN_WIDTH + env->offset_x)
 		{
 			z0 = map_point(env->fractal.radius, env->fractal.zoom, x, y);
 			each_pixel(env, x, y, z0);

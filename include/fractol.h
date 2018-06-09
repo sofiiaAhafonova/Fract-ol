@@ -17,8 +17,8 @@
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <math.h>
-# define SCREEN_HEIGHT 1000
-# define SCREEN_WIDTH 1800
+# define SCREEN_HEIGHT 600
+# define SCREEN_WIDTH 720
 # define ESC 53
 
 typedef enum	e_type
@@ -58,7 +58,9 @@ typedef struct	s_env
 	void		*window;
 	t_img		image;
 	t_fractal	fractal;
-
+	int			offset_x;
+	int 		offset_y;
+	int 		show_legend;
 }				t_env;
 
 t_env           *init(char *fractol);
@@ -77,7 +79,7 @@ int				calc_color_mandelbrot(int i);
 int				init_mandelbrot(t_env *env);
 void			each_pixel(t_env *env, int x, int y, t_complex z0);
 t_complex		map_point(double radius, unsigned int zoom, int x, int y);
-
-
+int 			put_legend(t_env *env);
+int 			on_mouse_move(int x, int y, t_env *env);
 
 #endif

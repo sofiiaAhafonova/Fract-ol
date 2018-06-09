@@ -26,7 +26,7 @@ void	each_iter(t_env *env, int x, int y, t_complex c)
 	if (i > env->fractal.n)
 		env->image.data[y * SCREEN_WIDTH + x] = 0;
 	else
-		env->image.data[y * SCREEN_WIDTH + x] = i + 1 - (int)(log(log(mod(z0)))/log(5));//env->fractal.color_func(i) ;
+		env->image.data[y * SCREEN_WIDTH + x] = i + env->fractal.color_func(i) ;
 }
 
 

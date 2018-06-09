@@ -25,6 +25,7 @@ int		choose_fractal(t_env *env)
 		julia_set(env);
 	else if (env->fractal.type == MANDELBROT)
 		mandelbrot_set(env);
+	put_legend(env);
 	return (0);
 }
 
@@ -52,6 +53,8 @@ int		on_key_press(int key, t_env *env)
 		env->fractal.zoom--;
 	else if (key == 24)
 		env->fractal.zoom++;
+	else if (key == 4)
+		env->show_legend = env->show_legend ? 0 : 1;
 	else
 		return (0);
 	mlx_clear_window(env->mlx_ptr, env->window);

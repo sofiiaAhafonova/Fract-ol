@@ -29,7 +29,7 @@ int		init_mandelbrot(t_env *env)
 	env->fractal.c.x =  -1;
 	env->fractal.c.y = -0.4;
 	env->fractal.radius = 2;
-	env->fractal.n = 150;
+	env->fractal.n = 160;
 	env->fractal.zoom = 1;
 	env->fractal.color_func = calc_color_mandelbrot;
 	return (0);
@@ -58,5 +58,8 @@ t_env   *init(char *fractol)
 		env->fractal.type = JULIA;
 	else
 		env->fractal.type = MANDELBROT;
+	env->offset_x = 0;
+	env->offset_y = 0;
+	env->show_legend = 1;
 	return (env);
 }

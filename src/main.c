@@ -28,6 +28,7 @@ int		main(int argc, char **argv)
         return (print_error("Wrong fractal name\n"));
 	mlx_hook(env->window, 17, 1L << 17, &close_window, env);
 	mlx_hook(env->window, 2, 5, on_key_press, env);
+	mlx_mouse_hook(env->window, on_mouse_move, env);
     if (env->fractal.type == JULIA)
 	{
 		init_julia(env);
@@ -38,6 +39,7 @@ int		main(int argc, char **argv)
 		init_mandelbrot(env);
 		mandelbrot_set(env);
 	}
+	put_legend(env);
     mlx_loop(env->mlx_ptr);
 	return (0);
 }
