@@ -78,8 +78,8 @@ int				calc_color_julia(int i);
 int				calc_color_mandelbrot(int i);
 int				init_mandelbrot(t_env *env);
 void			each_pixel(t_env *env, int x, int y, t_complex z0);
-t_complex		map_point(double radius, unsigned int zoom, int x, int y);
+t_complex map_point(double radius, unsigned int zoom, int x, int y, t_env *env);
 int 			put_legend(t_env *env);
-int 			on_mouse_move(int x, int y, t_env *env);
-
+int 			on_mouse_click(int b, int x, int y, t_env *env);
+int				choose_fractal(t_env *env);
 #endif

@@ -49,8 +49,12 @@ int		on_key_press(int key, t_env *env)
 		env->fractal.c.x = env->fractal.c.x - 0.00001;
 	else if (key == 22)
 		env->fractal.c.x = env->fractal.c.x + 0.00001;
-	else if (key == 27 && env->fractal.zoom > 1)
-		env->fractal.zoom--;
+	else if (key == 27)
+	{
+		if (env->fractal.zoom > 1)
+			env->fractal.zoom--;
+	}
+
 	else if (key == 24)
 		env->fractal.zoom++;
 	else if (key == 4)

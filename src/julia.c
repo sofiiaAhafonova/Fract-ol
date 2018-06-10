@@ -12,7 +12,7 @@
 
 #include "../include/fractol.h"
 
-t_complex map_point(double radius, unsigned int zoom, int x, int y)
+t_complex map_point(double radius, unsigned int zoom, int x, int y, t_env *env)
 {
 	t_complex c;
 	int l;
@@ -34,13 +34,13 @@ void	each_pixel(t_env *env, int x, int y, t_complex z0)
 	t_complex	z1;
 
 	i = 0;
-	z1 = add(sqr(z0),env->fractal.c);
-	while (mod(z1)<env->fractal.radius && ++i <= env->fractal.n)
+	while (++i <= env->fractal.n)
 	{
 		z1 = add(sqr(z0),env->fractal.c);
+		if (z1.x * z1.x + z1.y *z1.y >= 4)
+			break ;
 		z0 = z1;
 	}
-
 	if (i > env->fractal.n)
 		env->image.data[y * SCREEN_WIDTH + x] = 0;
 	else
@@ -53,13 +53,13 @@ void	julia_set(t_env *env)
 	int 		y;
 	t_complex	z0;
 
-	y = env->offset_y - 1;
-	while (++y <= SCREEN_HEIGHT + env->offset_y)
+	y = -1;
+	while (++y <= SCREEN_HEIGHT)
 	{
-		x = env->offset_x - 1;
-		while (++x <= SCREEN_WIDTH + env->offset_x)
+		x = -1;
+		while (++x <= SCREEN_WIDTH)
 		{
-			z0 = map_point(env->fractal.radius, env->fractal.zoom, x, y);
+			z0 = map_point(env->fractal.radius, env->fractal.zoom, x, y, NULL);
 			each_pixel(env, x, y, z0);
 		}
 	}
