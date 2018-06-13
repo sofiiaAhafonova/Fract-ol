@@ -25,7 +25,8 @@ int 	on_mouse_click(int b, int x, int y, t_env *env)
 
 int				mouse_move(int x, int y, t_env *env)
 {
-	if ((env->fractal.c.x && env->fractal.c.y) && (x > 0 && x < SCREEN_WIDTH && y > 0 && y < SCREEN_HEIGHT))
+	if (env->fractal.change_on_move &&
+		(env->fractal.c.x && env->fractal.c.y) && (x > 0 && x < SCREEN_WIDTH && y > 0 && y < SCREEN_HEIGHT))
 	{
 		env->fractal.c.x += ((double)x - env->mouse_offset_x) / (SCREEN_WIDTH * 2);
 		env->fractal.c.y += ((double)y - env->mouse_offset_y) / (SCREEN_HEIGHT * 2);

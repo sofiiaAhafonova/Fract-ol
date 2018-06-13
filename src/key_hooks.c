@@ -37,9 +37,6 @@ int		on_key_press(int key, t_env *env)
 		env->fractal.zoom /= 1.1;
 	else if (key == 24)
 		env->fractal.zoom *= 1.1;
-	else if (key == 49 || key == 50)
-		env->fractal.radius = key == 49 ? env->fractal.radius - 0.1 : env->fractal.radius + 0.1;
-		/*iteration number*/
 	else if (key == 18 && env->fractal.n > 1)
 		env->fractal.n--;
 	else if (key == 19)
@@ -54,6 +51,8 @@ int		on_key_press(int key, t_env *env)
 		env->offset_y+=5;
 	else if (key == BOTTOM_ARROW)
 		env->offset_y-=5;
+	else if (key == SPACE)
+		env->fractal.change_on_move = env->fractal.change_on_move ? 0 : 1;
 	else
 		return (0);
 	mlx_clear_window(env->mlx_ptr, env->window);

@@ -24,6 +24,7 @@
 # define RIGHT_ARROW 124
 # define TOP_ARROW 126
 # define BOTTOM_ARROW 125
+# define SPACE 49
 
 typedef enum	e_type
 {
@@ -43,6 +44,7 @@ typedef struct	s_fractal
 	double			radius;
 	int				n;
 	double			zoom;
+	int 			change_on_move;
 	int				(*color_func)(int);
 
 }				t_fractal;

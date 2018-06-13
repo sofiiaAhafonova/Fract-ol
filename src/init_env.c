@@ -58,6 +58,7 @@ t_env   *init(char *fractol)
 		env->fractal.type = JULIA;
 	else
 		env->fractal.type = MANDELBROT;
+	env->fractal.change_on_move = 1;
 	env->mouse_offset_x = 0;
 	env->mouse_offset_y = 0;
 	env->offset_y = 0;
