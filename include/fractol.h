@@ -20,6 +20,10 @@
 # define SCREEN_HEIGHT 600
 # define SCREEN_WIDTH 720
 # define ESC 53
+# define LEFT_ARROW 123
+# define RIGHT_ARROW 124
+# define TOP_ARROW 126
+# define BOTTOM_ARROW 125
 
 typedef enum	e_type
 {
@@ -60,6 +64,8 @@ typedef struct	s_env
 	t_fractal	fractal;
 	int			mouse_offset_x;
 	int 		mouse_offset_y;
+	int 		offset_x;
+	int 		offset_y;
 	int 		show_legend;
 }				t_env;
 

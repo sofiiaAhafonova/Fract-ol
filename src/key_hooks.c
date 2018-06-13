@@ -44,12 +44,16 @@ int		on_key_press(int key, t_env *env)
 		env->fractal.n--;
 	else if (key == 19)
 		env->fractal.n++;
-	else if (key == 23)
-		env->fractal.c.x = env->fractal.c.x - 0.00001;
-	else if (key == 22)
-		env->fractal.c.x = env->fractal.c.x + 0.00001;
 	else if (key == 4)
 		env->show_legend = env->show_legend ? 0 : 1;
+	else if (key == RIGHT_ARROW)
+		env->offset_x-=5;
+	else if (key == LEFT_ARROW)
+		env->offset_x+=5;
+	else if (key == TOP_ARROW)
+		env->offset_y+=5;
+	else if (key == BOTTOM_ARROW)
+		env->offset_y-=5;
 	else
 		return (0);
 	mlx_clear_window(env->mlx_ptr, env->window);

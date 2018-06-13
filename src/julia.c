@@ -18,8 +18,8 @@ t_complex map_point(t_env *env, int y, int x)
 	int l;
 
 	l = SCREEN_WIDTH < SCREEN_HEIGHT ? SCREEN_WIDTH : SCREEN_HEIGHT;
-	c.x = 4 * (x - SCREEN_WIDTH / 2.0) / (l * env->fractal.zoom);
-	c.y = 4 * (y - SCREEN_HEIGHT / 2.0) / (l * env->fractal.zoom);
+	c.x = 4 * (x + env->offset_x- SCREEN_WIDTH / 2.0) / (l * env->fractal.zoom);
+	c.y = 4 * (y + env->offset_y- SCREEN_HEIGHT / 2.0) / (l * env->fractal.zoom);
 	return (c);
 }
 
