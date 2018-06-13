@@ -33,6 +33,13 @@ int		on_key_press(int key, t_env *env)
 {
 	if (key == ESC)
 		return (close_window(env));
+	else if (key == 27)
+	{
+		if (env->fractal.zoom > 1)
+			env->fractal.zoom-= 0.01;
+	}
+	else if (key == 24)
+		env->fractal.zoom+= 0.01;
 	else if (key == 49 || key == 50)
 		env->fractal.radius = key == 49 ? env->fractal.radius - 0.1 : env->fractal.radius + 0.1;
 		/*iteration number*/
@@ -49,14 +56,6 @@ int		on_key_press(int key, t_env *env)
 		env->fractal.c.x = env->fractal.c.x - 0.00001;
 	else if (key == 22)
 		env->fractal.c.x = env->fractal.c.x + 0.00001;
-	else if (key == 27)
-	{
-		if (env->fractal.zoom > 1)
-			env->fractal.zoom--;
-	}
-
-	else if (key == 24)
-		env->fractal.zoom++;
 	else if (key == 4)
 		env->show_legend = env->show_legend ? 0 : 1;
 	else

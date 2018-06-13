@@ -18,7 +18,7 @@ int		init_julia(t_env *env)
 	env->fractal.c.x = -0.7;
 	env->fractal.c.y = 0.27015;
 	env->fractal.radius = 2;
-	env->fractal.n = 150;
+	env->fractal.n = 50;
 	env->fractal.zoom = 1;
 	env->fractal.color_func = calc_color_julia;
 	return (0);
@@ -26,10 +26,10 @@ int		init_julia(t_env *env)
 
 int		init_mandelbrot(t_env *env)
 {
-	env->fractal.c.x =  -1;
-	env->fractal.c.y = -0.4;
+	env->fractal.c.x =  -0.7;
+	env->fractal.c.y = -0.27015;
 	env->fractal.radius = 2;
-	env->fractal.n = 160;
+	env->fractal.n = 50;
 	env->fractal.zoom = 1;
 	env->fractal.color_func = calc_color_mandelbrot;
 	return (0);

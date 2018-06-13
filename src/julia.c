@@ -12,14 +12,14 @@
 
 #include "../include/fractol.h"
 
-t_complex map_point(double radius, unsigned int zoom, int x, int y, t_env *env)
+t_complex map_point(t_env *env, int y, int x)
 {
 	t_complex c;
 	int l;
 
 	l = SCREEN_WIDTH < SCREEN_HEIGHT ? SCREEN_WIDTH : SCREEN_HEIGHT;
-	c.x = 2 * radius * (x - SCREEN_WIDTH / 2.0) / (l * zoom);
-	c.y = 2 * radius * (y - SCREEN_HEIGHT / 2.0) / (l * zoom);
+	c.x = 4 * (x - SCREEN_WIDTH / 2.0) / (l * env->fractal.zoom);
+	c.y = 4 * (y - SCREEN_HEIGHT / 2.0) / (l * env->fractal.zoom);
 	return (c);
 }
 
@@ -28,18 +28,16 @@ int		calc_color_julia(int i)
 	return ((i << 21) + (i << 10) + i * 8);
 }
 
-void	each_pixel(t_env *env, int x, int y, t_complex z0)
+void	each_pixel(t_env *env, int x, int y, t_complex c)
 {
 	int			i;
-	t_complex	z1;
+	t_complex	z;
 
 	i = 0;
-	while (++i <= env->fractal.n)
+	z = add_complex(sqr_complex(c), env->fractal.c);
+	while ((z.x * z.x + z.y *z.y) < 4 && ++i <= env->fractal.n)
 	{
-		z1 = add(sqr(z0),env->fractal.c);
-		if (z1.x * z1.x + z1.y *z1.y >= 4)
-			break ;
-		z0 = z1;
+		z = add_complex(sqr_complex(z), env->fractal.c);
 	}
 	if (i > env->fractal.n)
 		env->image.data[y * SCREEN_WIDTH + x] = 0;
@@ -59,7 +57,7 @@ void	julia_set(t_env *env)
 		x = -1;
 		while (++x <= SCREEN_WIDTH)
 		{
-			z0 = map_point(env->fractal.radius, env->fractal.zoom, x, y, NULL);
+			z0 = map_point(env, y, x);
 			each_pixel(env, x, y, z0);
 		}
 	}
