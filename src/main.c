@@ -29,6 +29,7 @@ int		main(int argc, char **argv)
 	mlx_hook(env->window, 17, 1L << 17, &close_window, env);
 	mlx_hook(env->window, 2, 5, on_key_press, env);
 	mlx_hook(env->window, 4, 0, on_mouse_click, env);
+	mlx_hook(env->window, 6, 0, mouse_move, env);
     if (env->fractal.type == JULIA)
 	{
 		init_julia(env);

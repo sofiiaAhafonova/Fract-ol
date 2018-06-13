@@ -58,8 +58,8 @@ typedef struct	s_env
 	void		*window;
 	t_img		image;
 	t_fractal	fractal;
-	int			offset_x;
-	int 		offset_y;
+	int			mouse_offset_x;
+	int 		mouse_offset_y;
 	int 		show_legend;
 }				t_env;
 
@@ -82,4 +82,5 @@ t_complex map_point(t_env *env, int y, int x);
 int 			put_legend(t_env *env);
 int 			on_mouse_click(int b, int x, int y, t_env *env);
 int				choose_fractal(t_env *env);
+int				mouse_move(int x, int y, t_env *mlx);
 #endif
