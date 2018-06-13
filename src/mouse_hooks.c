@@ -15,8 +15,8 @@ int 	on_mouse_click(int b, int x, int y, t_env *env)
 	}
 	else
 	{
-		env->mouse_offset_y = y;
-		env->mouse_offset_x = x;
+		env->offset_y = SCREEN_HEIGHT/2 - y;
+		env->offset_x = SCREEN_WIDTH/2 - x;
 	}
 
 	mlx_clear_window(env->mlx_ptr, env->window);
