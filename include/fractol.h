@@ -68,6 +68,8 @@ typedef struct	s_env
 	int 		mouse_offset_y;
 	double 		offset_x;
 	double 		offset_y;
+	int			tmp_x;
+	int			tmp_y;
 	int 		show_legend;
 	int 		right_button;
 }				t_env;

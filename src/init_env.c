@@ -77,5 +77,7 @@ t_env   *init(char *fractol)
 	env->offset_y = 0;
 	env->offset_x = 0;
 	env->show_legend = 1;
+	env->tmp_x = SCREEN_WIDTH/2;
+	env->tmp_y = 0;
 	return (env);
 }
