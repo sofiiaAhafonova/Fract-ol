@@ -30,6 +30,7 @@ int		main(int argc, char **argv)
 	mlx_hook(env->window, 2, 5, on_key_press, env);
 	mlx_hook(env->window, 4, 0, on_mouse_click, env);
 	mlx_hook(env->window, 6, 0, mouse_move, env);
+	mlx_hook(env->window, 5, 0, mouse_up, env);
     if (env->fractal.type == JULIA)
 	{
 		init_julia(env);
@@ -39,6 +40,11 @@ int		main(int argc, char **argv)
 	{
 		init_mandelbrot(env);
 		mandelbrot_set(env);
+	}
+	else if (env->fractal.type == BURNINGSHIP)
+	{
+		init_burningship(env);
+		burningship(env);
 	}
 	put_legend(env);
     mlx_loop(env->mlx_ptr);

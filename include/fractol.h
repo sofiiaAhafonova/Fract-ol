@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <math.h>
 # define SCREEN_HEIGHT 600
-# define SCREEN_WIDTH 720
+# define SCREEN_WIDTH 800
 # define ESC 53
 # define LEFT_ARROW 123
 # define RIGHT_ARROW 124
@@ -28,7 +28,7 @@
 
 typedef enum	e_type
 {
-	JULIA, MANDELBROT
+	JULIA, MANDELBROT, BURNINGSHIP
 }				t_type;
 
 typedef struct	s_complex
@@ -66,9 +66,10 @@ typedef struct	s_env
 	t_fractal	fractal;
 	int			mouse_offset_x;
 	int 		mouse_offset_y;
-	int 		offset_x;
-	int 		offset_y;
+	double 		offset_x;
+	double 		offset_y;
 	int 		show_legend;
+	int 		right_button;
 }				t_env;
 
 t_env           *init(char *fractol);
@@ -91,4 +92,7 @@ int 			put_legend(t_env *env);
 int 			on_mouse_click(int b, int x, int y, t_env *env);
 int				choose_fractal(t_env *env);
 int				mouse_move(int x, int y, t_env *mlx);
+void			burningship(t_env *env);
+int 	mouse_up(int b, int x, int y, t_env *env);
+int		init_burningship(t_env *env);
 #endif

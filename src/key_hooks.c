@@ -25,6 +25,8 @@ int		choose_fractal(t_env *env)
 		julia_set(env);
 	else if (env->fractal.type == MANDELBROT)
 		mandelbrot_set(env);
+	else if (env->fractal.type == BURNINGSHIP)
+		burningship(env);
 	put_legend(env);
 	return (0);
 }
