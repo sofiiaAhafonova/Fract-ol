@@ -71,7 +71,7 @@ typedef struct	s_env
 	int			tmp_x;
 	int			tmp_y;
 	int 		show_legend;
-	int 		right_button;
+	int 		left_button;
 }				t_env;
 
 t_env           *init(char *fractol);

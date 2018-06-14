@@ -12,14 +12,11 @@ int 	on_mouse_click(int b, int x, int y, t_env *env)
 		else
 			env->fractal.zoom /= 1.1;
 	}
-	else if (b == 1)
+	else if (b == 1 && !env->left_button)
 	{
-		env->offset_y = SCREEN_HEIGHT/2 - y;
-		env->offset_x = SCREEN_WIDTH/2 - x;
-	}
-	else if (b == 2 && !env->right_button)
-	{
-		env->right_button = 1;
+		env->tmp_x = x;
+		env->tmp_y = y;
+		env->left_button = 1;
 	}
 	mlx_clear_window(env->mlx_ptr, env->window);
 	return (choose_fractal(env));
@@ -27,11 +24,11 @@ int 	on_mouse_click(int b, int x, int y, t_env *env)
 
 int 	mouse_up(int b, int x, int y, t_env *env)
 {
-	if (b == 2 && env->right_button)
+	if (b == 1 && env->left_button)
 	{
 		env->tmp_x = x;
 		env->tmp_y = y;
-		env->right_button = 0;
+		env->left_button = 0;
 	}
 
 }
@@ -48,7 +45,7 @@ int				mouse_move(int x, int y, t_env *env)
 			env->mouse_offset_y = y;
 		}
 	}
-	if (env->right_button)
+	if (env->left_button)
 	{
 		if (x >= env->tmp_x )
 			env->offset_x -= (x - env->tmp_x);

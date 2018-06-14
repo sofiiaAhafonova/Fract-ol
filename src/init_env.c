@@ -71,7 +71,7 @@ t_env   *init(char *fractol)
 	else
 		env->fractal.type = BURNINGSHIP;
 	env->fractal.change_on_move = 1;
-	env->right_button = 0;
+	env->left_button = 0;
 	env->mouse_offset_x = 0;
 	env->mouse_offset_y = 0;
 	env->offset_y = 0;
