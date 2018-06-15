@@ -55,6 +55,8 @@ int		on_key_press(int key, t_env *env)
 		env->offset_y-=5;
 	else if (key == SPACE)
 		env->fractal.change_on_move = env->fractal.change_on_move ? 0 : 1;
+	else if (key == 21)
+		change_color_schema(env);
 	else
 		return (0);
 	mlx_clear_window(env->mlx_ptr, env->window);

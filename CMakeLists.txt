@@ -32,5 +32,5 @@ else()
     # stuff that should happen not on Linux
 endif()
 
-add_executable(Fract_ol src/main.c include/fractol.h src/init_env.c src/remove_env.c src/key_hooks.c src/julia.c src/complex.c src/mandelbrot.c src/map_legend.c src/mouse_hooks.c src/burningship.c)
+add_executable(Fract_ol src/main.c include/fractol.h src/init_env.c src/remove_env.c src/key_hooks.c src/julia.c src/complex.c src/mandelbrot.c src/map_legend.c src/mouse_hooks.c src/burningship.c src/color_shema.c)
 target_link_libraries(Fract_ol ${PROJECT_LINK_LIBS} -Werror -Wextra -Wall ${LINKED_LIBS} ${EXTRA_LIBS})

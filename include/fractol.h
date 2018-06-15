@@ -46,6 +46,7 @@ typedef struct	s_fractal
 	double			zoom;
 	int 			change_on_move;
 	int				(*color_func)(int);
+	int 			color_schema;
 
 }				t_fractal;
 
@@ -85,8 +86,8 @@ double			mod_complex(t_complex a);
 void			julia_set(t_env *env);
 void			mandelbrot_set(t_env *env);
 int 			print_error(char *str);
-int				calc_color_julia(int i);
-int				calc_color_mandelbrot(int i);
+int				color_schema_one(int i);
+int				color_schema_two(int i);
 int				init_mandelbrot(t_env *env);
 void			each_pixel(t_env *env, int x, int y, t_complex c);
 t_complex map_point(t_env *env, int y, int x);
@@ -97,4 +98,5 @@ int				mouse_move(int x, int y, t_env *mlx);
 void			burningship(t_env *env);
 int 	mouse_up(int b, int x, int y, t_env *env);
 int		init_burningship(t_env *env);
+int		change_color_schema(t_env *env);
 #endif

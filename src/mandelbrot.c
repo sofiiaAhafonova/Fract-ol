@@ -1,10 +1,6 @@
 #include "../include/fractol.h"
 #include <math.h>
 
-int				calc_color_mandelbrot(int i)
-{
-	return ((i << 10) + i * 8);
-}
 
 void	each_iter(t_env *env, int x, int y, t_complex c)
 {

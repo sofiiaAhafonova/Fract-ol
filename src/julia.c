@@ -23,11 +23,6 @@ t_complex map_point(t_env *env, int y, int x)
 	return (c);
 }
 
-int		calc_color_julia(int i)
-{
-	return ((i << 21) + (i << 10) + i * 8);
-}
-
 void	each_pixel(t_env *env, int x, int y, t_complex c)
 {
 	int			i;
