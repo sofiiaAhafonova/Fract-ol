@@ -22,10 +22,8 @@ int		main(int argc, char **argv)
 {
 	t_env *env;
 
-	if (argc != 2)
+	if (argc != 2 || !(env = init(argv[1])))
 		return (print_error("usage: fractol [julia/mandelbrot/burningship]\n"));
-	if (!(env = init(argv[1])))
-		return (print_error("Wrong fractal name\n"));
 	mlx_hook(env->window, 17, 1L << 17, &close_window, env);
 	mlx_hook(env->window, 2, 5, on_key_press, env);
 	mlx_hook(env->window, 4, 0, on_mouse_click, env);
