@@ -15,7 +15,7 @@
 int		close_window(t_env *env)
 {
 	remove_env(env);
-//	system("leaks fractol");
+	system("leaks fractol");
 	exit(EXIT_SUCCESS);
 }
 
@@ -45,6 +45,22 @@ void		reset(t_env *env, int key)
 	}
 }
 
+void	arrows_space(int key, t_env *env)
+{
+	if (key == RIGHT_ARROW)
+		env->offset_x-=5;
+	else if (key == LEFT_ARROW)
+		env->offset_x+=5;
+	else if (key == TOP_ARROW)
+		env->offset_y+=5;
+	else if (key == BOTTOM_ARROW)
+		env->offset_y-=5;
+	else if (key == SPACE)
+		env->fractal.change_on_move = env->fractal.change_on_move ? 0 : 1;
+	else if (key == 21)
+		change_color_schema(env);
+}
+
 int		on_key_press(int key, t_env *env)
 {
 	if (key == ESC)
@@ -59,18 +75,7 @@ int		on_key_press(int key, t_env *env)
 		env->fractal.n++;
 	else if (key == 4)
 		env->show_legend = env->show_legend ? 0 : 1;
-	else if (key == RIGHT_ARROW)
-		env->offset_x-=5;
-	else if (key == LEFT_ARROW)
-		env->offset_x+=5;
-	else if (key == TOP_ARROW)
-		env->offset_y+=5;
-	else if (key == BOTTOM_ARROW)
-		env->offset_y-=5;
-	else if (key == SPACE)
-		env->fractal.change_on_move = env->fractal.change_on_move ? 0 : 1;
-	else if (key == 21)
-		change_color_schema(env);
+	arrows_space(key, env);
 	reset(env, key);
 	mlx_clear_window(env->mlx_ptr, env->window);
 	return (choose_fractal(env));

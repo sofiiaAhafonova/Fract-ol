@@ -1,5 +1,4 @@
 #include "../include/fractol.h"
-#include <math.h>
 
 
 void	each_iter_burn(t_env *env, int x, int y, t_complex c)

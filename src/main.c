@@ -15,7 +15,6 @@
 int 	print_error(char *str)
 {
 	ft_putstr(str);
-	system("leaks fractol");
 	return (0);
 }
 

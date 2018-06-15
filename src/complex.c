@@ -29,8 +29,3 @@ t_complex sqr_complex(t_complex a)
 	c.y = 2 * a.x * a.y;
 	return (c);
 }
-
-double mod_complex(t_complex a)
-{
-	return (sqrt(a.x*a.x + a.y*a.y));
-}

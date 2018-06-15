@@ -41,7 +41,6 @@ typedef struct	s_fractal
 {
 	t_type			type;
 	t_complex		c;
-	double			radius;
 	int				n;
 	double			zoom;
 	int 			change_on_move;
@@ -82,7 +81,6 @@ int				close_window(t_env *env);
 int				on_key_press(int key, t_env *env);
 t_complex		add_complex(t_complex a, t_complex b);
 t_complex		sqr_complex(t_complex a);
-double			mod_complex(t_complex a);
 void			julia_set(t_env *env);
 void			mandelbrot_set(t_env *env);
 int 			print_error(char *str);
@@ -93,7 +91,7 @@ t_complex		map_point(t_env *env, int y, int x);
 int 			put_legend(t_env *env);
 int 			on_mouse_click(int b, int x, int y, t_env *env);
 int				choose_fractal(t_env *env);
-int				mouse_move(int x, int y, t_env *mlx);
+int				mouse_move(int x, int y, t_env *e);
 void			burningship(t_env *env);
 int 			mouse_up(int b, int x, int y, t_env *env);
 int				change_color_schema(t_env *env);

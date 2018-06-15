@@ -17,11 +17,11 @@ int		init_fractal(t_env *env)
 {
 	env->fractal.c.x = -0.7;
 	env->fractal.c.y = 0.27015;
-	env->fractal.radius = 2;
 	env->fractal.n = 50;
 	env->fractal.zoom = 1;
 	env->fractal.color_schema = 1;
 	env->fractal.color_func = color_schema_two;
+	env->fractal.change_on_move = 1;
 	return (0);
 }
 
@@ -49,7 +49,6 @@ t_env   *init(char *fractol)
 		env->fractal.type = MANDELBROT;
 	else
 		env->fractal.type = BURNINGSHIP;
-	env->fractal.change_on_move = 1;
 	env->left_button = 0;
 	env->mouse_offset_x = 0;
 	env->mouse_offset_y = 0;
