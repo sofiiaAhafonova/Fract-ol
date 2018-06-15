@@ -76,7 +76,7 @@ typedef struct	s_env
 }				t_env;
 
 t_env           *init(char *fractol);
-int				init_julia(t_env *env);
+int				init_fractal(t_env *env);
 void			remove_env(t_env *env);
 int				close_window(t_env *env);
 int				on_key_press(int key, t_env *env);
@@ -88,15 +88,13 @@ void			mandelbrot_set(t_env *env);
 int 			print_error(char *str);
 int				color_schema_one(int i);
 int				color_schema_two(int i);
-int				init_mandelbrot(t_env *env);
 void			each_pixel(t_env *env, int x, int y, t_complex c);
-t_complex map_point(t_env *env, int y, int x);
+t_complex		map_point(t_env *env, int y, int x);
 int 			put_legend(t_env *env);
 int 			on_mouse_click(int b, int x, int y, t_env *env);
 int				choose_fractal(t_env *env);
 int				mouse_move(int x, int y, t_env *mlx);
 void			burningship(t_env *env);
-int 	mouse_up(int b, int x, int y, t_env *env);
-int		init_burningship(t_env *env);
-int		change_color_schema(t_env *env);
+int 			mouse_up(int b, int x, int y, t_env *env);
+int				change_color_schema(t_env *env);
 #endif

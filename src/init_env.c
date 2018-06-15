@@ -13,7 +13,7 @@
 #include "../include/fractol.h"
 
 
-int		init_julia(t_env *env)
+int		init_fractal(t_env *env)
 {
 	env->fractal.c.x = -0.7;
 	env->fractal.c.y = 0.27015;
@@ -21,30 +21,6 @@ int		init_julia(t_env *env)
 	env->fractal.n = 50;
 	env->fractal.zoom = 1;
 	env->fractal.color_schema = 1;
-	env->fractal.color_func = color_schema_one;
-	return (0);
-}
-
-int		init_mandelbrot(t_env *env)
-{
-	env->fractal.c.x =  -0.7;
-	env->fractal.c.y = -0.27015;
-	env->fractal.radius = 2;
-	env->fractal.n = 50;
-	env->fractal.zoom = 1;
-	env->fractal.color_schema = 2;
-	env->fractal.color_func = color_schema_two;
-	return (0);
-}
-
-int		init_burningship(t_env *env)
-{
-	env->fractal.c.x =  -0.762;
-	env->fractal.c.y = -0.28;
-	env->fractal.radius = 2;
-	env->fractal.n = 50;
-	env->fractal.zoom = 1;
-	env->fractal.color_schema = 2;
 	env->fractal.color_func = color_schema_two;
 	return (0);
 }

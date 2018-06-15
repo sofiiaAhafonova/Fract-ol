@@ -31,6 +31,20 @@ int		choose_fractal(t_env *env)
 	return (0);
 }
 
+void		reset(t_env *env, int key)
+{
+	if (key == 29)
+	{
+		init_fractal(env);
+		env->offset_y = 0;
+		env->offset_x = 0;
+		env->mouse_offset_x = 0;
+		env->mouse_offset_y = 0;
+		env->tmp_x = SCREEN_WIDTH/2;
+		env->tmp_y = 0;
+	}
+}
+
 int		on_key_press(int key, t_env *env)
 {
 	if (key == ESC)
@@ -57,8 +71,7 @@ int		on_key_press(int key, t_env *env)
 		env->fractal.change_on_move = env->fractal.change_on_move ? 0 : 1;
 	else if (key == 21)
 		change_color_schema(env);
-	else
-		return (0);
+	reset(env, key);
 	mlx_clear_window(env->mlx_ptr, env->window);
 	return (choose_fractal(env));
 }

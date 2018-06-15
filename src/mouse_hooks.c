@@ -30,7 +30,7 @@ int 	mouse_up(int b, int x, int y, t_env *env)
 		env->tmp_y = y;
 		env->left_button = 0;
 	}
-
+	return (0);
 }
 
 int				mouse_move(int x, int y, t_env *env)
