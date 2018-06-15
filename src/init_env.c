@@ -12,9 +12,16 @@
 
 #include "../include/fractol.h"
 
-
-int		init_fractal(t_env *env)
+int			init_fractal(t_env *env)
 {
+	env->left_button = 0;
+	env->mouse_offset_x = 0;
+	env->mouse_offset_y = 0;
+	env->offset_y = 0;
+	env->offset_x = 0;
+	env->show_legend = 1;
+	env->tmp_x = SCREEN_WIDTH / 2;
+	env->tmp_y = 0;
 	env->fractal.c.x = -0.7;
 	env->fractal.c.y = 0.27015;
 	env->fractal.n = 50;
@@ -25,12 +32,12 @@ int		init_fractal(t_env *env)
 	return (0);
 }
 
-
-t_env   *init(char *fractol)
+t_env		*init(char *fractol)
 {
-    t_env *env;
+	t_env	*env;
 
-	if (ft_strcmp(fractol, "julia") && ft_strcmp(fractol, "mandelbrot") && ft_strcmp(fractol, "burningship"))
+	if (ft_strcmp(fractol, "julia") && ft_strcmp(fractol, "mandelbrot")
+		&& ft_strcmp(fractol, "burningship"))
 		return (0);
 	if ((env = malloc(sizeof(t_env))) == 0)
 		return (0);
@@ -39,23 +46,16 @@ t_env   *init(char *fractol)
 	if (!(env->window = mlx_new_window(env->mlx_ptr, SCREEN_WIDTH,
 			SCREEN_HEIGHT, fractol)))
 		return (0);
-	if (!(env->image.img_ptr = mlx_new_image(env->mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT)))
+	if (!(env->image.img_ptr = mlx_new_image(env->mlx_ptr,
+		SCREEN_WIDTH, SCREEN_HEIGHT)))
 		return (0);
-	env->image.data = (int *)mlx_get_data_addr(env->image.img_ptr, &env->image.bpp, &env->image.size_l,
-											&env->image.endian);
+	env->image.data = (int *)mlx_get_data_addr(env->image.img_ptr,
+		&env->image.bpp, &env->image.size_l, &env->image.endian);
 	if (!ft_strcmp(fractol, "julia"))
 		env->fractal.type = JULIA;
 	else if (!ft_strcmp(fractol, "mandelbrot"))
 		env->fractal.type = MANDELBROT;
 	else
 		env->fractal.type = BURNINGSHIP;
-	env->left_button = 0;
-	env->mouse_offset_x = 0;
-	env->mouse_offset_y = 0;
-	env->offset_y = 0;
-	env->offset_x = 0;
-	env->show_legend = 1;
-	env->tmp_x = SCREEN_WIDTH/2;
-	env->tmp_y = 0;
 	return (env);
 }

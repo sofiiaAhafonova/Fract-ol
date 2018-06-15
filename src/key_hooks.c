@@ -36,12 +36,6 @@ void		reset(t_env *env, int key)
 	if (key == 29)
 	{
 		init_fractal(env);
-		env->offset_y = 0;
-		env->offset_x = 0;
-		env->mouse_offset_x = 0;
-		env->mouse_offset_y = 0;
-		env->tmp_x = SCREEN_WIDTH/2;
-		env->tmp_y = 0;
 	}
 }
 
