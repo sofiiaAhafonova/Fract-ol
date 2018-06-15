@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractal.c                                            :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sahafono <sahafono@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: sahafono <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/03 21:33:00 by sahafono          #+#    #+#             */
-/*   Updated: 2018/05/03 21:33:00 by sahafono         ###   ########.fr       */
+/*   Created: 2018/06/15 16:47:34 by sahafono          #+#    #+#             */
+/*   Updated: 2018/06/15 16:47:36 by sahafono         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ void	each_pixel(t_env *env, int x, int y, t_complex c)
 
 	i = 0;
 	z = add_complex(sqr_complex(c), env->fractal.c);
-	while ((z.x * z.x + z.y *z.y) < 4 && ++i <= env->fractal.n)
+	while ((z.x * z.x + z.y * z.y) < 4 && ++i <= env->fractal.n)
 	{
 		z = add_complex(sqr_complex(z), env->fractal.c);
 	}
 	if (i > env->fractal.n)
 		env->image.data[y * SCREEN_WIDTH + x] = 0;
 	else
-		env->image.data[y * SCREEN_WIDTH + x] =  env->fractal.color_func(i);
+		env->image.data[y * SCREEN_WIDTH + x] = env->fractal.color_func(i);
 }
 
 void	julia_set(t_env *env)
 {
 	int			x;
-	int 		y;
+	int			y;
 	t_complex	c;
 	int			l;
 
@@ -44,9 +44,9 @@ void	julia_set(t_env *env)
 		while (++x <= SCREEN_WIDTH)
 		{
 			c.x = 4 * (x + env->offset_x - SCREEN_WIDTH / 2.0) /
-				  (l * env->fractal.zoom);
+					(l * env->fractal.zoom);
 			c.y = 4 * (y + env->offset_y - SCREEN_HEIGHT / 2.0) /
-				  (l * env->fractal.zoom);
+					(l * env->fractal.zoom);
 			each_pixel(env, x, y, c);
 		}
 	}
