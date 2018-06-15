@@ -12,7 +12,7 @@
 
 #include "../include/fractol.h"
 
-t_complex add_complex(t_complex a, t_complex b)
+t_complex	add_complex(t_complex a, t_complex b)
 {
 	t_complex c;
 
@@ -21,7 +21,7 @@ t_complex add_complex(t_complex a, t_complex b)
 	return (c);
 }
 
-t_complex sqr_complex(t_complex a)
+t_complex	sqr_complex(t_complex a)
 {
 	t_complex c;
 
