@@ -15,7 +15,7 @@ NAME = fractol
 
 # Project builds and dirs
 SRCDIR = ./src/
-SRCNAMES = $(shell ls $(SRCDIR) | grep -E ".+\.c")
+SRCNAMES = main.c init_env.c remove_env.c key_hooks.c julia.c complex.c mandelbrot.c map_legend.c mouse_hooks.c burningship.c color_shema.c
 SRC = $(addprefix $(SRCDIR), $(SRCNAMES))
 INC = ./include/
 BUILDDIR = ./build/

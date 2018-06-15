@@ -39,8 +39,10 @@ void mandelbrot_set(t_env *env)
 		y = -1;
 		while (++y < SCREEN_HEIGHT)
 		{
-			c.x = 4 * (x + env->offset_x - SCREEN_WIDTH / 2.0) / (l * env->fractal.zoom);
-			c.y = 4 * (y + env->offset_y - SCREEN_HEIGHT / 2.0) / (l * env->fractal.zoom);
+			c.x = 4 * (x + env->offset_x - SCREEN_WIDTH / 2.0) /
+				  (l * env->fractal.zoom);
+			c.y = 4 * (y + env->offset_y - SCREEN_HEIGHT / 2.0) /
+				  (l * env->fractal.zoom);
 			each_iter(env, x, y, c);
 		}
 	}
