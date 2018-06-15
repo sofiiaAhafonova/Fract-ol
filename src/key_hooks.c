@@ -31,7 +31,7 @@ int		choose_fractal(t_env *env)
 	return (0);
 }
 
-void		reset(t_env *env, int key)
+void	reset(t_env *env, int key)
 {
 	if (key == 29)
 	{
@@ -42,13 +42,13 @@ void		reset(t_env *env, int key)
 void	arrows_space(int key, t_env *env)
 {
 	if (key == RIGHT_ARROW)
-		env->offset_x-=5;
+		env->offset_x -= 5;
 	else if (key == LEFT_ARROW)
-		env->offset_x+=5;
+		env->offset_x += 5;
 	else if (key == TOP_ARROW)
-		env->offset_y+=5;
+		env->offset_y += 5;
 	else if (key == BOTTOM_ARROW)
-		env->offset_y-=5;
+		env->offset_y -= 5;
 	else if (key == SPACE)
 		env->fractal.change_on_move = env->fractal.change_on_move ? 0 : 1;
 	else if (key == 21)
